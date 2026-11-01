@@ -1,0 +1,527 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Jorvik Private Stables – ustájení, pronájem koní a jezdecký klub. Fanouškovský RP projekt ve hře Star Stable.">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Jorvik Private Stables</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&display=swap">
+<style>
+/* Tmavě modrá + zlatá, prostorné natočené karty; jediný tmavý vzhled */
+:root{
+  --bg:#0B1A33; --band:#081428; --card:#12264D; --raise:#1A3160;
+  --fg:#F2ECDF; --fg2:#C9D1DF; --mute:#A9B4C8;
+  --gold:#C9A55C; --gold-hi:#E4C987; --on-gold:#0B1A33;
+  --line:rgba(201,165,92,.25); --line-soft:rgba(201,165,92,.16);
+  --danger:#F08A7A;
+  --font:'Bricolage Grotesque', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--font);font-size:18px;line-height:1.55}
+a{color:var(--gold-hi)}a:hover{color:var(--fg)}
+h1,h2,h3{text-wrap:balance}
+.wrap{max-width:1320px;margin:0 auto;padding-left:max(24px,env(safe-area-inset-left,0px));padding-right:max(24px,env(safe-area-inset-right,0px))}
+.band{background:var(--band)}
+.lift{box-shadow:inset 0 0 0 1px rgba(201,165,92,.22),0 1px 0 rgba(2,8,22,.04),0 14px 28px -10px rgba(2,8,22,.45),0 48px 90px -30px rgba(2,8,22,.6)}
+.tilt{transform:perspective(1400px) rotateX(4deg) rotateY(-8deg);transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.tilt.r{transform:perspective(1400px) rotateX(4deg) rotateY(8deg)}
+.tilt:hover{transform:perspective(1400px) rotateX(0) rotateY(0) translateY(-8px)}
+.pop{transition:transform .4s cubic-bezier(.2,.8,.2,1)}
+.pop:hover{transform:translateY(-6px)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:inherit;font-weight:700;font-size:17px;padding:16px 28px;border-radius:16px;text-decoration:none;border:none;cursor:pointer;min-height:48px;transition:transform .25s,background .25s}
+.btn:hover{transform:translateY(-2px)}
+.btn.gold{background:var(--gold);color:var(--on-gold)}
+.btn.gold:hover{background:var(--gold-hi);color:var(--on-gold)}
+.btn.ghost{background:transparent;color:var(--gold);box-shadow:inset 0 0 0 1px var(--gold)}
+.btn.ghost:hover{background:var(--gold);color:var(--on-gold)}
+.btn.card{background:var(--card);color:var(--fg)}
+.num{font-size:15px;font-weight:700;color:var(--mute)}
+.h2{margin:0;font-weight:800;font-size:clamp(40px,5vw,72px);line-height:.98;letter-spacing:-.03em}
+.sec{padding-top:150px}
+.sec-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:64px}
+.sec-head .t{display:flex;flex-direction:column;gap:12px}
+:focus-visible{outline:2px solid var(--gold-hi);outline-offset:3px}
+
+/* navigace + hero */
+.nav{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 24px;padding-block:28px 8px}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--fg)}
+.logo-mark{width:38px;height:38px;border-radius:11px;background:var(--gold);display:flex;align-items:center;justify-content:center;flex:none}
+.logo b{font-weight:800;font-size:18px}
+.nav-links{display:flex;flex-wrap:wrap;align-items:center;gap:4px 20px;font-size:16px;font-weight:500}
+.nav-links a:not(.btn){color:var(--fg2);text-decoration:none;padding:10px 6px}
+.nav-links a:not(.btn):hover{color:var(--gold-hi)}
+.nav-links .btn{padding:12px 22px;font-size:16px;border-radius:14px}
+.hero{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:28px 48px;padding-block:56px 96px}
+.hero .l{flex:1 1 520px;min-width:0;display:flex;flex-direction:column;gap:22px}
+.hero .r{flex:1 1 360px;min-width:0;display:flex;flex-direction:column;gap:22px}
+.kicker{font-size:15px;font-weight:600;color:var(--gold)}
+.hero h1{margin:0;font-weight:800;font-size:clamp(48px,6.4vw,96px);line-height:.94;letter-spacing:-.035em}
+.hero p{margin:0;font-size:20px;line-height:1.5;color:var(--mute)}
+.row-btns{display:flex;flex-wrap:wrap;gap:12px}
+
+/* fotky */
+.ph{position:relative;border-radius:22px;overflow:hidden;background:var(--raise);box-shadow:inset 0 2px 12px rgba(2,8,22,.4)}
+.ph img{display:block;width:100%;height:100%;object-fit:cover}
+.ph-empty{width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:var(--gold);font-weight:700;letter-spacing:.2em;text-transform:uppercase;font-size:12px;text-align:center;padding:16px}
+.ph-empty span{border:1px solid var(--line);padding:12px 16px;border-radius:12px}
+.ph-tools{position:absolute;left:12px;right:12px;bottom:12px;display:flex;flex-wrap:wrap;gap:8px}
+
+/* lokality */
+.lok{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,480px),1fr));gap:72px 48px;align-items:start}
+.lok article{position:relative;min-width:0;background:var(--card);border-radius:32px;padding:18px 18px 34px;display:flex;flex-direction:column;gap:24px}
+.lok .ph{aspect-ratio:16/9;height:auto;max-width:100%}
+.lok .body{padding:0 14px;display:flex;flex-direction:column;gap:14px}
+.lok h3{margin:0;font-weight:800;font-size:34px;letter-spacing:-.02em;display:flex;gap:12px;align-items:baseline}
+.lok h3 .i{color:var(--gold)}
+.lok p{margin:0;color:var(--fg2)}
+@media (min-width:1100px){.lok article:nth-child(even){margin-top:64px}}
+.care{margin-top:96px;background:var(--card);border-radius:32px;padding:clamp(28px,4vw,48px);display:flex;flex-wrap:wrap;gap:32px 56px;align-items:center}
+.care p{flex:2 1 520px;min-width:0;margin:0;font-size:20px;line-height:1.6}
+.care .box{flex:1 1 260px;min-width:0;background:var(--band);border-radius:24px;padding:28px;display:flex;flex-direction:column;gap:8px}
+.care .box .s{font-size:15px;color:var(--gold);font-weight:700}
+.care .box .b{font-weight:800;font-size:28px;line-height:1.15}
+
+/* služby */
+.svc{display:flex;flex-wrap:wrap;gap:48px 64px}
+.svc .t{flex:1 1 320px;min-width:0;display:flex;flex-direction:column;gap:12px}
+.svc .list{flex:2 1 620px;min-width:0;background:var(--card);border-radius:32px;padding:12px 36px}
+.svc .row{position:relative;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px 24px;padding:26px 0;border-bottom:1px solid var(--line)}
+.svc .row:last-of-type{border-bottom:none}
+.svc .row .a{display:flex;flex-direction:column;min-width:0}
+.svc .row .a b{font-size:24px;font-weight:700}
+.svc .row .a span{font-size:16px;color:var(--mute)}
+.svc .row .v{color:var(--mute)}
+
+/* klub */
+.klub{margin-top:150px}
+.klub .in{display:flex;flex-wrap:wrap;align-items:center;gap:72px 64px;padding-block:130px}
+.klub .l{flex:1 1 460px;min-width:0;display:flex;flex-direction:column;gap:24px}
+.klub .l p{margin:0;font-size:19px;color:var(--mute)}
+.klub .notes{display:flex;flex-direction:column;gap:10px;padding-top:20px;border-top:1px solid var(--line);font-size:17px}
+.stack{flex:1 1 420px;min-width:0;position:relative;min-height:560px}
+.stack .s1{position:absolute;inset:40px 60px 20px 20px;border-radius:30px;background:var(--gold);transform:rotate(-7deg)}
+.stack .s2{position:absolute;inset:20px 30px 30px 40px;border-radius:30px;background:var(--raise);transform:rotate(4deg)}
+.stack .front{position:relative;margin:0 40px 50px 30px;border-radius:30px;background:var(--card);padding:34px;box-shadow:0 60px 90px -30px rgba(0,0,0,.6);display:flex;flex-direction:column;gap:10px}
+.stack .front .lab{font-weight:700;font-size:15px;color:var(--mute)}
+.stack ul{margin:0;padding:0;list-style:none;font-size:19px;font-weight:600}
+.stack li{position:relative;padding:8px 0;border-bottom:1px solid var(--line)}
+.stack li:last-child{border-bottom:none}
+
+/* koně */
+.kone{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,260px),1fr));gap:24px}
+.kone article{position:relative;min-width:0;background:var(--card);border-radius:28px;padding:14px 14px 24px;display:flex;flex-direction:column;gap:16px}
+.kone .ph{aspect-ratio:4/3;height:auto;max-width:100%;border-radius:20px}
+.kone .n b{overflow-wrap:anywhere}
+.kone .n{padding:0 10px;display:flex;flex-direction:column;gap:4px}
+.kone .n b{font-weight:800;font-size:22px}
+.kone .n span{color:var(--mute);font-size:16px}
+
+/* o nás */
+.onas{display:flex;flex-wrap:wrap;gap:48px 72px}
+.onas .t{flex:1 1 320px;min-width:0;display:flex;flex-direction:column;gap:12px}
+.onas .txt{flex:2 1 620px;min-width:0;display:flex;flex-direction:column;gap:22px;font-size:19px;color:var(--fg2)}
+.onas .txt p{margin:0;position:relative}
+.onas .lead{font-size:26px;line-height:1.4;font-weight:600;color:var(--fg)}
+
+/* ceník */
+.h3{margin:0 0 20px;font-size:28px;font-weight:800}
+.grid2{display:flex;flex-wrap:wrap;gap:28px;align-items:flex-start}
+.table{background:var(--card);border-radius:28px;padding:14px 32px}
+.tr{position:relative;display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid var(--line-soft)}
+.tr:last-child{border-bottom:none}
+.tr .p{font-weight:700;white-space:nowrap;font-variant-numeric:tabular-nums}
+.tr .c{display:flex;flex-direction:column;min-width:0}
+.tr .c b{font-weight:700}
+.tr .c span{font-size:15px;color:var(--mute)}
+.tr.sm{font-size:16px}
+.note{margin:0;padding:14px 0;border-bottom:1px solid var(--line-soft);font-size:16px;color:var(--mute)}
+.mods{background:var(--card);border-radius:26px;padding:26px 30px;display:flex;flex-direction:column;gap:14px}
+.mod{position:relative;display:flex;gap:14px;align-items:baseline}
+.badge{font-weight:800;white-space:nowrap;padding:4px 10px;border-radius:8px;background:var(--raise);color:var(--fg)}
+.mod:first-child .badge{background:var(--gold);color:var(--on-gold)}
+.incl{background:var(--band);border-radius:26px;padding:30px}
+.incl h4{margin:0 0 14px;font-size:22px;font-weight:800}
+.incl ul{margin:0;padding:0;list-style:none;font-size:16px;color:var(--fg2)}
+.incl li{position:relative;padding:7px 0;border-top:1px solid var(--line-soft)}
+
+footer.band .in{padding-block:72px 40px;display:flex;flex-direction:column;gap:40px;color:var(--mute)}
+footer .big{font-weight:800;font-size:clamp(36px,6vw,88px);line-height:.95;letter-spacing:-.035em;color:var(--fg)}
+footer .bot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;font-size:15px;padding-top:24px;border-top:1px solid var(--line)}
+
+/* načítání */
+.loading{min-height:60vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;padding:40px 24px}
+.loading b{font-size:clamp(32px,5vw,56px);font-weight:800;letter-spacing:-.03em}
+.loading span{color:var(--mute)}
+
+/* editor */
+body.editing .tilt,body.editing .tilt.r,body.editing .tilt:hover,body.editing .pop:hover{transform:none}
+body.editing [data-path]{outline:1px dashed rgba(201,165,92,.6);outline-offset:4px;border-radius:4px;cursor:text;min-width:2ch}
+body.editing [data-path]:hover{background:rgba(201,165,92,.08)}
+body.editing [data-path]:focus{outline:2px solid var(--gold-hi);background:rgba(201,165,92,.1)}
+body.editing [data-path]:empty::before{content:"Napiš text…";color:var(--mute);font-weight:400}
+.mini{font:inherit;font-size:14px;font-weight:700;border:none;border-radius:10px;padding:9px 14px;min-height:40px;cursor:pointer;background:var(--gold);color:var(--on-gold)}
+.mini.ghost{background:rgba(8,20,40,.85);color:var(--fg);box-shadow:inset 0 0 0 1px var(--line)}
+.rm{position:absolute;top:-12px;right:-12px;width:34px;height:34px;border-radius:50%;border:1px solid var(--gold);background:var(--band);color:var(--gold-hi);font-size:20px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:3}
+.rm:hover{background:var(--danger);border-color:var(--danger);color:var(--on-gold)}
+.rm.in-row{position:static;flex:none;width:30px;height:30px;font-size:17px}
+.add{display:inline-flex;align-items:center;gap:8px;font:inherit;font-size:15px;font-weight:700;color:var(--gold-hi);background:transparent;border:1px dashed var(--gold);border-radius:12px;padding:10px 16px;min-height:44px;cursor:pointer;margin-top:12px}
+.add:hover{background:rgba(201,165,92,.12)}
+.add.block{min-height:120px;justify-content:center;border-radius:28px;margin-top:0;align-self:stretch}
+#editbar{position:fixed;z-index:50;right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));left:auto;display:flex;flex-direction:column;align-items:flex-end;gap:10px;max-width:calc(100% - 32px)}
+#editbar .panel{background:var(--band);border:1px solid var(--gold);border-radius:20px;padding:12px;display:flex;flex-wrap:wrap;align-items:center;gap:10px;box-shadow:0 24px 60px -18px rgba(0,0,0,.7)}
+#editbar .hint{font-size:14px;color:var(--fg2);max-width:340px;padding:0 6px}
+#editbar .btn{padding:12px 20px;font-size:15px;border-radius:12px}
+#editbar .clr-t{font-size:14px;font-weight:700;color:var(--gold-hi);padding:0 6px}
+#editbar .clr{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--fg2);padding:0 4px}
+#editbar input[type=color]{width:44px;height:40px;border:1px solid var(--line);border-radius:10px;background:transparent;padding:2px;cursor:pointer}
+#editbar .dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--gold-hi);margin-right:6px}
+#toast{position:fixed;z-index:60;left:50%;transform:translateX(-50%);bottom:calc(96px + env(safe-area-inset-bottom,0px));background:var(--fg);color:var(--on-gold);padding:12px 18px;border-radius:12px;font-size:15px;font-weight:600;max-width:calc(100% - 32px);box-shadow:0 20px 40px -12px rgba(0,0,0,.6)}
+@media (max-width:640px){.rm{top:-8px;right:-8px}.svc .list,.table{padding-left:22px;padding-right:22px}}
+@media (prefers-reduced-motion:reduce){.tilt,.pop,.btn{transition:none}.tilt,.tilt.r{transform:none}}
+</style>
+</head>
+<body>
+<div id="app"><div class="loading"><b>Jorvik Private Stables</b><span>Načítám stránku…</span></div></div>
+<div id="editbar"></div>
+<div id="toast" role="status" aria-live="polite" hidden></div>
+<input type="file" id="photo-input" accept="image/*" hidden>
+<script>
+(function () {
+  const app = document.getElementById('app');
+  const bar = document.getElementById('editbar');
+  const toastEl = document.getElementById('toast');
+  const fileIn = document.getElementById('photo-input');
+  const DRAFT_KEY = 'jps-koncept';
+
+  let S = null;          // aktuální obsah
+  let saved = null;      // poslední uložený obsah
+  let editing = false, dirty = false, canEdit = false, saving = false, readOnly = false;
+  let artifactNs = null;
+  let photoTarget = null;
+  let draft = null;
+  const pending = {};    // nová fotka: cesta -> Blob
+  const previews = {};   // cesta -> blob: URL
+
+  const clone = (o) => JSON.parse(JSON.stringify(o));
+  const DEFAULTS = {
+    labels: {
+      nav: { ustajeni: 'Ustájení', sluzby: 'Služby', klub: 'Jezdecký klub', kone: 'Naši koně', onas: 'O nás', cenik: 'Ceník' },
+      hero1: 'Ustájení', hero2: 'Ceník',
+      signupPrefix: 'Přihlášky do klubu:',
+      linksNote: 'Ceny naleznete v ceníku, naše koně v sekci Naši koně.'
+    },
+    theme: { bg: '#0B1A33', gold: '#C9A55C' }
+  };
+  function withDefaults(d) {
+    const merge = (t, s) => {
+      Object.keys(s).forEach((k) => {
+        if (t[k] == null) t[k] = clone(s[k]);
+        else if (s[k] && typeof s[k] === 'object' && !Array.isArray(s[k]) && typeof t[k] === 'object') merge(t[k], s[k]);
+      });
+      return t;
+    };
+    return merge(d, DEFAULTS);
+  }
+  function hexToHsl(hex) {
+    const m = /^#?([0-9a-f]{6})$/i.exec(hex || ''); if (!m) return { h: 218, s: 65, l: 12 };
+    const n = parseInt(m[1], 16), r = (n >> 16) / 255, g = ((n >> 8) & 255) / 255, b = (n & 255) / 255;
+    const mx = Math.max(r, g, b), mn = Math.min(r, g, b), l = (mx + mn) / 2;
+    let h = 0, s = 0;
+    if (mx !== mn) {
+      const d = mx - mn; s = l > 0.5 ? d / (2 - mx - mn) : d / (mx + mn);
+      h = mx === r ? (g - b) / d + (g < b ? 6 : 0) : mx === g ? (b - r) / d + 2 : (r - g) / d + 4; h *= 60;
+    }
+    return { h: Math.round(h), s: Math.round(s * 100), l: Math.round(l * 100) };
+  }
+  const hsl = (c, l, a) => 'hsl(' + c.h + ' ' + c.s + '% ' + Math.max(0, Math.min(100, l)) + '%' + (a ? ' / ' + a : '') + ')';
+  function applyTheme() {
+    const t = (S && S.theme) || DEFAULTS.theme, b = hexToHsl(t.bg), g = hexToHsl(t.gold), r = document.documentElement.style;
+    r.setProperty('--bg', t.bg);
+    r.setProperty('--band', hsl(b, b.l - 4));
+    r.setProperty('--card', hsl(b, b.l + 8));
+    r.setProperty('--raise', hsl(b, b.l + 14));
+    r.setProperty('--on-gold', hsl(b, Math.max(8, b.l)));
+    r.setProperty('--gold', t.gold);
+    r.setProperty('--gold-hi', hsl(g, Math.min(92, g.l + 15)));
+    r.setProperty('--line', hsl(g, g.l, '.25'));
+    r.setProperty('--line-soft', hsl(g, g.l, '.16'));
+  }
+  const esc = (s) => String(s == null ? '' : s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const get = (p) => p.split('.').reduce((a, k) => (a == null ? a : a[k]), S);
+  const set = (p, v) => { const ks = p.split('.'); let a = S; for (let i = 0; i < ks.length - 1; i++) a = a[ks[i]]; a[ks[ks.length - 1]] = v; };
+
+  const NEW = {
+    'ustajeni.items': () => ({ name: 'Nová lokalita', text: 'Popis areálu.', photo: '', alt: '' }),
+    'sluzby.items': () => ({ title: 'Nová služba', sub: '', value: '' }),
+    'klub.focus': () => 'Nová disciplína',
+    'kone.items': () => ({ name: '[Jméno koně]', info: '[Plemeno · zaměření]', photo: '', alt: '' }),
+    'onas.paragraphs': () => 'Nový odstavec.',
+    'cenik.ustajeni': () => ({ label: 'Lokalita · typ ustájení', price: '0 JS' }),
+    'cenik.mods': () => ({ badge: '+0 JS', text: 'popis' }),
+    'cenik.included': () => 'Nová položka',
+    'cenik.pronajem': () => ({ title: 'Nový kůň', sub: 'popis', price: '0 JS' }),
+    'cenik.pronajemExtra': () => ({ label: 'Příplatek', price: '+0 JS' }),
+    'cenik.klub': () => ({ label: 'Trénink', price: '0 JS' })
+  };
+
+  // ---------- pomocníci šablon ----------
+  const T = (path, tag, cls, ml) => '<' + (tag || 'span') + (cls ? ' class="' + cls + '"' : '') + ' data-path="' + path + '"' + (ml ? ' data-ml="1"' : '') + '>' + esc(get(path)) + '</' + (tag || 'span') + '>';
+  const show = (path) => editing || (get(path) || '').trim() !== '';
+  const rm = (list, i, inRow) => editing ? '<button type="button" class="rm' + (inRow ? ' in-row' : '') + '" data-act="rm" data-list="' + list + '" data-i="' + i + '" aria-label="Odebrat položku">×</button>' : '';
+  const add = (list, label, block) => editing ? '<button type="button" class="add' + (block ? ' block' : '') + '" data-act="add" data-list="' + list + '">+ ' + label + '</button>' : '';
+  function photo(path) {
+    const v = get(path + '.photo');
+    const src = v ? (previews[v] || v) : '';
+    const inner = src
+      ? '<img src="' + esc(src) + '" alt="' + esc(get(path + '.alt') || get(path + '.name') || '') + '" loading="lazy">'
+      : '<div class="ph-empty"><span>Jorvik Private Stables</span></div>';
+    const tools = editing
+      ? '<div class="ph-tools"><button type="button" class="mini" data-act="photo" data-target="' + path + '">' + (src ? 'Změnit fotku' : 'Nahrát fotku') + '</button>' + (src ? '<button type="button" class="mini ghost" data-act="photo-del" data-target="' + path + '">Odebrat fotku</button>' : '') + '</div>'
+      : '';
+    return '<div class="ph">' + inner + tools + '</div>';
+  }
+
+  // ---------- vykreslení ----------
+  function render() {
+    if (!S) return;
+    applyTheme();
+    document.body.classList.toggle('editing', editing);
+    const u = S.ustajeni, c = S.cenik;
+    let h = '';
+
+    h += '<section id="top" class="band"><div class="wrap">';
+    h += '<nav class="nav" aria-label="Hlavní menu"><a class="logo" href="#top"><span class="logo-mark"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0B1A33" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M5 3v8a7 7 0 0 0 14 0V3"></path></svg></span>' + T('brand', 'b') + '</a>';
+    const L = (k, href, cls) => '<a' + (cls ? ' class="' + cls + '"' : '') + ' href="' + href + '" data-path="labels.' + k + '">' + esc(get('labels.' + k)) + '</a>';
+    h += '<div class="nav-links">' + L('nav.ustajeni', '#ustajeni') + L('nav.sluzby', '#sluzby') + L('nav.klub', '#klub') + L('nav.kone', '#kone') + L('nav.onas', '#onas') + L('nav.cenik', '#cenik', 'btn gold') + '</div></nav>';
+    h += '<div class="hero"><div class="l">' + T('hero.kicker', 'span', 'kicker') + T('hero.title', 'h1') + '</div>';
+    h += '<div class="r">' + T('hero.text', 'p', '', 1) + '<div class="row-btns">' + L('hero1', '#ustajeni', 'btn gold') + L('hero2', '#cenik', 'btn card') + '</div></div></div>';
+    h += '</div></section>';
+
+    h += '<section id="ustajeni" class="wrap sec"><div class="sec-head"><div class="t"><span class="num">01</span>' + T('ustajeni.title', 'h2', 'h2') + '</div>' + (show('ustajeni.intro') ? T('ustajeni.intro', 'p', '', 1).replace('<p ', '<p style="margin:0;max-width:420px;color:var(--fg2);font-size:19px" ') : '') + '</div>';
+    h += '<div class="lok">';
+    u.items.forEach((it, i) => {
+      const p = 'ustajeni.items.' + i;
+      h += '<article class="tilt' + (i % 2 ? ' r' : '') + ' lift">' + rm('ustajeni.items', i) + photo(p) + '<div class="body"><h3><span class="i">' + (i + 1) + '</span>' + T(p + '.name') + '</h3>' + T(p + '.text', 'p', '', 1) + '</div></article>';
+    });
+    h += add('ustajeni.items', 'Přidat lokalitu', true) + '</div>';
+    h += '<div class="care lift">' + T('ustajeni.care', 'p', '', 1) + '<div class="box">' + T('ustajeni.careLabel', 'span', 's') + T('ustajeni.careTitle', 'span', 'b') + '</div></div>';
+    h += '</section>';
+
+    h += '<section id="sluzby" class="wrap sec"><div class="svc"><div class="t"><span class="num">02</span>' + T('sluzby.title', 'h2', 'h2') + '</div><div class="list lift">';
+    S.sluzby.items.forEach((it, i) => {
+      const p = 'sluzby.items.' + i;
+      h += '<div class="row"><span class="a">' + T(p + '.title', 'b') + (show(p + '.sub') ? T(p + '.sub') : '') + '</span>' + (show(p + '.value') ? T(p + '.value', 'span', 'v') : '') + rm('sluzby.items', i, true) + '</div>';
+    });
+    h += add('sluzby.items', 'Přidat službu') + '</div></div></section>';
+
+    h += '<section id="klub" class="band klub"><div class="wrap in"><div class="l"><span class="num" style="color:var(--gold)">03</span>' + T('klub.title', 'h2', 'h2') + T('klub.text', 'p', '', 1);
+    h += '<div class="notes"><strong style="color:var(--fg)">' + T('klub.age') + '</strong><span>' + T('labels.signupPrefix') + ' ' + T('klub.signup', 'span', '', 0).replace('<span ', '<span style="color:var(--mute)" ') + '</span>' + (show('labels.linksNote') ? T('labels.linksNote', 'span', '', 1) : '') + '</div></div>';
+    h += '<div class="stack"><div class="s1" aria-hidden="true"></div><div class="s2" aria-hidden="true"></div><div class="front pop">' + T('klub.focusLabel', 'span', 'lab') + '<ul>';
+    S.klub.focus.forEach((f, i) => { h += '<li style="display:flex;justify-content:space-between;align-items:center;gap:10px">' + T('klub.focus.' + i) + rm('klub.focus', i, true) + '</li>'; });
+    h += '</ul>' + add('klub.focus', 'Přidat disciplínu') + '</div></div></div></section>';
+
+    h += '<section id="kone" class="wrap sec"><div class="sec-head"><div class="t"><span class="num">04</span>' + T('kone.title', 'h2', 'h2') + '</div></div><div class="kone">';
+    S.kone.items.forEach((k, i) => {
+      const p = 'kone.items.' + i;
+      h += '<article class="lift pop">' + rm('kone.items', i) + photo(p) + '<div class="n">' + T(p + '.name', 'b') + T(p + '.info') + '</div></article>';
+    });
+    h += add('kone.items', 'Přidat koně', true) + '</div></section>';
+
+    h += '<section id="onas" class="wrap sec"><div class="onas"><div class="t"><span class="num">05</span>' + T('onas.title', 'h2', 'h2') + '</div><div class="txt">' + T('onas.lead', 'p', 'lead', 1);
+    S.onas.paragraphs.forEach((pp, i) => { h += '<div style="position:relative">' + rm('onas.paragraphs', i) + T('onas.paragraphs.' + i, 'p', '', 1) + '</div>'; });
+    h += add('onas.paragraphs', 'Přidat odstavec') + '</div></div></section>';
+
+    h += '<section id="cenik" class="wrap sec" style="padding-bottom:150px"><div class="sec-head"><div class="t"><span class="num">06</span>' + T('cenik.title', 'h2', 'h2') + '</div></div>';
+    h += T('cenik.ustajeniTitle', 'h3', 'h3') + '<div class="grid2"><div class="table lift" style="flex:3 1 620px;min-width:0">';
+    c.ustajeni.forEach((r, i) => { h += '<div class="tr">' + T('cenik.ustajeni.' + i + '.label') + '<span style="display:flex;gap:10px;align-items:center">' + T('cenik.ustajeni.' + i + '.price', 'strong', 'p') + rm('cenik.ustajeni', i, true) + '</span></div>'; });
+    h += add('cenik.ustajeni', 'Přidat řádek') + '</div><div style="flex:2 1 380px;min-width:0;display:flex;flex-direction:column;gap:20px"><div class="mods lift">';
+    c.mods.forEach((m, i) => { h += '<div class="mod">' + T('cenik.mods.' + i + '.badge', 'span', 'badge') + T('cenik.mods.' + i + '.text') + rm('cenik.mods', i, true) + '</div>'; });
+    h += add('cenik.mods', 'Přidat úpravu ceny') + '</div><div class="incl lift">' + T('cenik.includedTitle', 'h4') + '<ul>';
+    c.included.forEach((it, i) => { h += '<li style="display:flex;justify-content:space-between;gap:10px;align-items:center">' + T('cenik.included.' + i) + rm('cenik.included', i, true) + '</li>'; });
+    h += '</ul>' + add('cenik.included', 'Přidat položku') + '</div></div></div>';
+
+    h += '<div class="grid2" style="margin-top:72px"><div style="flex:1 1 520px;min-width:0;display:flex;flex-direction:column;gap:20px">' + T('cenik.pronajemTitle', 'h3', 'h3').replace('class="h3"', 'class="h3" style="margin:0"') + '<div class="table lift">';
+    c.pronajem.forEach((r, i) => { const p = 'cenik.pronajem.' + i; h += '<div class="tr"><span class="c">' + T(p + '.title', 'b') + T(p + '.sub') + '</span><span style="display:flex;gap:10px;align-items:center">' + T(p + '.price', 'strong', 'p') + rm('cenik.pronajem', i, true) + '</span></div>'; });
+    h += add('cenik.pronajem', 'Přidat typ koně');
+    if (show('cenik.pronajemNote')) h += T('cenik.pronajemNote', 'p', 'note', 1);
+    c.pronajemExtra.forEach((r, i) => { const p = 'cenik.pronajemExtra.' + i; h += '<div class="tr sm">' + T(p + '.label') + '<span style="display:flex;gap:10px;align-items:center">' + T(p + '.price', 'strong', 'p') + rm('cenik.pronajemExtra', i, true) + '</span></div>'; });
+    h += add('cenik.pronajemExtra', 'Přidat příplatek') + '</div></div>';
+    h += '<div style="flex:1 1 420px;min-width:0;display:flex;flex-direction:column;gap:20px">' + T('cenik.klubTitle', 'h3', 'h3').replace('class="h3"', 'class="h3" style="margin:0"') + '<div class="table lift">';
+    c.klub.forEach((r, i) => { const p = 'cenik.klub.' + i; h += '<div class="tr">' + T(p + '.label') + '<span style="display:flex;gap:10px;align-items:center">' + T(p + '.price', 'strong', 'p') + rm('cenik.klub', i, true) + '</span></div>'; });
+    h += add('cenik.klub', 'Přidat řádek') + '</div></div></div></section>';
+
+    h += '<footer class="band"><div class="wrap in"><div class="big">' + esc(S.brand) + '</div><div class="bot">' + T('footer.places') + T('footer.note') + '</div></div></footer>';
+
+    app.innerHTML = h;
+    if (editing) app.querySelectorAll('[data-path]').forEach((el) => { el.contentEditable = 'true'; el.spellcheck = true; });
+    renderBar();
+  }
+
+  // ---------- lišta editoru ----------
+  function renderBar() {
+    if (!canEdit || readOnly || !S) { bar.innerHTML = ''; return; }
+    let h = '';
+    if (draft && !editing) {
+      h += '<div class="panel"><span class="hint">Máš neuložené změny z minulé úpravy.</span><button type="button" class="btn gold" data-bar="restore">Obnovit</button><button type="button" class="btn ghost" data-bar="drop">Zahodit</button></div>';
+    }
+    if (!editing) {
+      h += '<div class="panel"><button type="button" class="btn gold" data-bar="edit">Upravit stránku</button></div>';
+    } else {
+      h += '<div class="panel"><span class="clr-t">Barvy webu</span><label class="clr">Pozadí <input type="color" id="clr-bg" data-theme="bg" value="' + esc(S.theme.bg) + '"></label><label class="clr">Zlatá <input type="color" id="clr-gold" data-theme="gold" value="' + esc(S.theme.gold) + '"></label><button type="button" class="btn ghost" data-bar="theme-reset">Výchozí barvy</button></div>';
+      h += '<div class="panel"><span class="hint">Klikni na text a přepiš ho. Fotky měníš tlačítkem na fotce, × položku odebere.</span>';
+      h += '<button type="button" class="btn gold" data-bar="save"' + (saving ? ' disabled' : '') + '>' + (saving ? 'Ukládám…' : (dirty ? '<span class="dot" aria-hidden="true"></span>Uložit změny' : 'Uložit změny')) + '</button>';
+      h += '<button type="button" class="btn ghost" data-bar="cancel"' + (saving ? ' disabled' : '') + '>' + (dirty ? 'Zahodit změny' : 'Hotovo') + '</button></div>';
+    }
+    bar.innerHTML = h;
+  }
+
+  let toastTimer = null;
+  function toast(msg) {
+    toastEl.textContent = msg; toastEl.hidden = false;
+    clearTimeout(toastTimer); toastTimer = setTimeout(() => { toastEl.hidden = true; }, 5000);
+  }
+  function markDirty() { if (!dirty) { dirty = true; renderBar(); } }
+
+  function photoPaths(o) {
+    const out = new Set();
+    o.ustajeni.items.forEach((x) => x.photo && out.add(x.photo));
+    o.kone.items.forEach((x) => x.photo && out.add(x.photo));
+    return out;
+  }
+
+  async function save() {
+    if (saving) return;
+    const active = document.activeElement; if (active && active.blur) active.blur();
+    if (!artifactNs) { toast('Ukládání tu není k dispozici. Otevři stránku v Claude.'); return; }
+    saving = true; renderBar();
+    const used = photoPaths(S), before = photoPaths(saved);
+    const files = { 'data/site.json': { content: JSON.stringify(S, null, 1), contentType: 'application/json' } };
+    Object.keys(pending).forEach((p) => { if (used.has(p)) files[p] = { content: pending[p], contentType: 'image/jpeg' }; });
+    before.forEach((p) => { if (!used.has(p) && p.indexOf('img/') === 0) files[p] = null; });
+    try { sessionStorage.setItem(DRAFT_KEY, JSON.stringify(S)); } catch (e) {}
+    try {
+      await artifactNs.publish(files);
+      Object.keys(pending).forEach((k) => delete pending[k]);
+      saved = clone(S); dirty = false; editing = false; saving = false;
+      try { sessionStorage.removeItem(DRAFT_KEY); } catch (e) {}
+      render();
+      toast('Uloženo. Změny uvidí každý, kdo stránku otevře.');
+    } catch (e) {
+      saving = false;
+      const code = e && e.code;
+      if (code === 'conflict') { toast('Mezitím uložil změny někdo jiný. Stránka se načte znovu s jeho verzí, tvoje texty půjde obnovit.'); renderBar(); return; }
+      if (code === 'not_writer' || code === 'not_granted') { readOnly = true; editing = false; render(); toast('Tuhle stránku můžeš jen prohlížet, upravovat ji nemáš povolené.'); return; }
+      if (code === 'capability_disabled') { toast('Tady se ukládat nedá (např. u veřejného odkazu). Otevři stránku přímo v Claude.'); renderBar(); return; }
+      if (code === 'too_large') { toast('Stránka je moc velká. Zkus nahrát menší fotky nebo některé odebrat.'); renderBar(); return; }
+      if (code === 'rate_limited') { toast('Ukládáš moc často. Počkej chvilku a zkus to znovu.'); renderBar(); return; }
+      toast('Uložení se nepovedlo' + (e && e.message ? ': ' + e.message : '.') + ' Zkus to prosím znovu.');
+      renderBar();
+    }
+  }
+
+  // ---------- fotky ----------
+  async function resize(file) {
+    const url = URL.createObjectURL(file);
+    try {
+      const img = await new Promise((res, rej) => { const i = new Image(); i.onload = () => res(i); i.onerror = rej; i.src = url; });
+      const max = 1600, k = Math.min(1, max / Math.max(img.naturalWidth, img.naturalHeight));
+      const cv = document.createElement('canvas');
+      cv.width = Math.round(img.naturalWidth * k); cv.height = Math.round(img.naturalHeight * k);
+      cv.getContext('2d').drawImage(img, 0, 0, cv.width, cv.height);
+      return await new Promise((res) => cv.toBlob(res, 'image/jpeg', 0.84));
+    } finally { URL.revokeObjectURL(url); }
+  }
+  fileIn.addEventListener('change', async () => {
+    const f = fileIn.files && fileIn.files[0];
+    const target = photoTarget; fileIn.value = '';
+    if (!f || !target) return;
+    if (!/^image\//.test(f.type)) { toast('Tohle není obrázek. Vyber fotku (JPG, PNG…).'); return; }
+    try {
+      const blob = await resize(f);
+      if (!blob) throw new Error('resize');
+      const path = 'img/foto-' + Date.now().toString(36) + '.jpg';
+      pending[path] = blob; previews[path] = URL.createObjectURL(blob);
+      set(target + '.photo', path);
+      if (!get(target + '.alt')) set(target + '.alt', get(target + '.name') || '');
+      markDirty(); render();
+    } catch (e) { toast('Fotku se nepodařilo načíst. Zkus jiný soubor.'); }
+  });
+
+  // ---------- události ----------
+  app.addEventListener('click', (e) => {
+    const b = e.target.closest('[data-act]');
+    if (!b) {
+      if (editing) { const a = e.target.closest('a[href]'); if (a) e.preventDefault(); }
+      return;
+    }
+    const act = b.dataset.act;
+    if (act === 'rm') { get(b.dataset.list).splice(+b.dataset.i, 1); markDirty(); render(); }
+    else if (act === 'add') { get(b.dataset.list).push(NEW[b.dataset.list]()); markDirty(); render(); }
+    else if (act === 'photo') { photoTarget = b.dataset.target; fileIn.click(); }
+    else if (act === 'photo-del') { set(b.dataset.target + '.photo', ''); markDirty(); render(); }
+  });
+  app.addEventListener('input', (e) => {
+    const el = e.target.closest('[data-path]');
+    if (!el || !editing) return;
+    set(el.dataset.path, el.innerText.replace(/ /g, ' ').replace(/\n+$/, ''));
+    markDirty();
+  });
+  app.addEventListener('keydown', (e) => {
+    const el = e.target.closest && e.target.closest('[data-path]');
+    if (el && editing && e.key === 'Enter' && !el.dataset.ml) { e.preventDefault(); el.blur(); }
+  });
+  app.addEventListener('paste', (e) => {
+    const el = e.target.closest && e.target.closest('[data-path]');
+    if (!el || !editing) return;
+    e.preventDefault();
+    const text = (e.clipboardData && e.clipboardData.getData('text/plain')) || '';
+    document.execCommand('insertText', false, el.dataset.ml ? text : text.replace(/\s*\n\s*/g, ' '));
+  });
+  bar.addEventListener('click', (e) => {
+    const b = e.target.closest('[data-bar]'); if (!b) return;
+    const a = b.dataset.bar;
+    if (a === 'edit') { editing = true; render(); toast('Režim úprav zapnutý.'); }
+    else if (a === 'save') save();
+    else if (a === 'cancel') {
+      if (dirty) { S = clone(saved); Object.keys(pending).forEach((k) => delete pending[k]); dirty = false; }
+      editing = false; render();
+    }
+    else if (a === 'restore') {
+      const known = photoPaths(saved);
+      draft.ustajeni.items.concat(draft.kone.items).forEach((x) => { if (x.photo && !known.has(x.photo) && !pending[x.photo]) x.photo = ''; });
+      S = withDefaults(draft); draft = null; editing = true; dirty = true; try { sessionStorage.removeItem(DRAFT_KEY); } catch (er) {} render(); toast('Neuložené změny obnoveny. Nezapomeň je uložit.'); }
+    else if (a === 'theme-reset') { S.theme = clone(DEFAULTS.theme); applyTheme(); dirty = true; renderBar(); }
+    else if (a === 'drop') { draft = null; try { sessionStorage.removeItem(DRAFT_KEY); } catch (er) {} renderBar(); }
+  });
+
+  bar.addEventListener('input', (e) => {
+    const i = e.target.closest('[data-theme]'); if (!i || !editing) return;
+    S.theme[i.dataset.theme] = i.value; applyTheme(); dirty = true;
+  });
+  bar.addEventListener('change', (e) => { if (e.target.closest('[data-theme]')) renderBar(); });
+
+  // ---------- start ----------
+  fetch('data/site.json', { cache: 'no-store' })
+    .then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then((data) => {
+      S = withDefaults(data); saved = clone(S);
+      try { const d = sessionStorage.getItem(DRAFT_KEY); if (d && d !== JSON.stringify(saved)) draft = JSON.parse(d); else if (d) sessionStorage.removeItem(DRAFT_KEY); } catch (e) {}
+      render();
+    })
+    .catch(() => { app.innerHTML = '<div class="loading"><b>Jorvik Private Stables</b><span>Obsah stránky se nepodařilo načíst. Zkus stránku obnovit.</span></div>'; });
+
+  (async () => {
+    if (!window.claude || !window.claude.use) return;
+    const [art, usr] = await Promise.all([window.claude.use('artifact'), window.claude.use('user')]);
+    artifactNs = art;
+    canEdit = !!art && (usr ? await usr.canEdit() : true);
+    renderBar();
+  })();
+})();
+</script>
+
+</body>
+</html>

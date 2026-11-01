@@ -1,0 +1,325 @@
+{
+ "brand": "Jorvik Private Stables",
+ "hero": {
+  "kicker": "Ustájení · Pronájem koní · Jezdecký klub",
+  "title": "Jorvik Private Stables",
+  "text": "Moderní stáj, kde se spojení tradice s inovacemi projevuje v každém detailu."
+ },
+ "ustajeni": {
+  "title": "Ustájení",
+  "intro": "Čtyři areály. Vyberte si ten, který sedí vám i vašemu koni.",
+  "items": [
+   {
+    "name": "Steve Farm",
+    "text": "Jízdárna se skokovým materiálem a drezurními písmeny s podkladem z toho nejlepšího materiálu v Jorviku. Prostorná krytá hala. Menší výběhy, jeden velký. Velká vnitřní stáj s prostornými boxy, které dbají na pohodlnost koně. Kruhovka, krásné okolí. Klubovna a šatny.",
+    "photo": "img/foto-mvv6lfkk.jpg",
+    "alt": "Jezdkyně na ryzákovi ve cvalu na jízdárně"
+   },
+   {
+    "name": "Baroness Racetrack",
+    "text": "Prostorná travnatá jízdárna se skoky, velká dostihová dráha. Kruhovka, tribuny. Menší výběhy, prostorné venkovní boxy. Klubovna, šatny a menší bufet.",
+    "photo": "img/foto-mvv6llu8.jpg",
+    "alt": "Dvě jezdkyně na koních na dlážděném nádvoří"
+   },
+   {
+    "name": "Silverglade Manor",
+    "text": "Velká kruhová jízdárna, velká horní jízdárna, menší, ale i větší výběhy. Velká vnitřní stáj, pár venkovních boxů. Dolní velká jízdárna, dvě prostorné jezdecké haly, jedna skoková, druhá drezurní. Prostorná šatna a velká klubovna.",
+    "photo": "img/foto-mvv6lps0.jpg",
+    "alt": "Strakatý šedák v zasněženém výběhu"
+   },
+   {
+    "name": "Marley Farm",
+    "text": "Areál zaměřený primárně na westernové jezdce. Velká jízdárna, menší barelová jízdárna a prostorný výběh pro smíšené stádo. Možnost využívat trail, kruhovku a boxové ustájení na sousední Steve Farm, případně jezdeckou halu u Manor Stables. Vytápěná klubovna a prostorné šatny.",
+    "photo": "img/foto-mvv6luem.jpg",
+    "alt": "Marley Farm"
+   }
+  ],
+  "care": "V naší stáji dbáme na pohodlí a zdraví koní, proto používáme podestýlku z bezprašných hoblin, které mají vysokou savost a jsou šetrné k dýchacímu ústrojí koně. Také dbáme na pohodlí jezdců, a proto máme v každé lokalitě vytápěnou klubovnu a prostorné šatny. V jedné z lokalit máme menší bufet s posezením a výhledem na dostihovou dráhu v areálu Baroness Racetracku. V každé sedlovně je nadstandardní vybavení a je rovněž vytápěná.",
+  "careLabel": "Pravidelně v areálu",
+  "careTitle": "Kovář, fyzioterapeut a zubař"
+ },
+ "sluzby": {
+  "title": "Služby",
+  "items": [
+   {
+    "title": "Ustájení koní",
+    "sub": "",
+    "value": "viz ceník"
+   },
+   {
+    "title": "Pronájem sportovních i rekreačních koní",
+    "sub": "",
+    "value": "od 6 000 JS / měsíc"
+   },
+   {
+    "title": "Tréninky pod naší zkušenou trenérkou",
+    "sub": "Ellie Noblecobbler",
+    "value": "od 1 000 JS / hod"
+   },
+   {
+    "title": "Sportovní jezdecký klub",
+    "sub": "Vhodný pro úplné začátečníky, ale i ambiciózní jezdce",
+    "value": ""
+   },
+   {
+    "title": "Brigáda či práce na plný úvazek",
+    "sub": "Administrativa · mistování · práce u koní · prodavač",
+    "value": ""
+   }
+  ]
+ },
+ "klub": {
+  "title": "Jezdecký klub",
+  "text": "Náš jezdecký klub je velice úspěšný a je vhodný pro lidi, kteří už stáje mají, ale láká je něco nového, nebo také pro ty, kteří mají méně času, ale nechtějí RP jen tak zahodit. V jezdeckém klubu se jezdí pouze na našich zkušených sportovních a rekreačních koních a ponících.",
+  "age": "Vhodný pro děti od 3 let",
+  "signup": "[doplnit odkaz / kontakt]",
+  "focusLabel": "Zaměřujeme se na",
+  "focus": [
+   "Drezuru",
+   "Parkur",
+   "Cross country",
+   "Westernové základní disciplíny",
+   "Dostihy",
+   "Jízdárenskou práci",
+   "Práci s mladými a nezkušenými koňmi",
+   "Ježdění na profi úrovni"
+  ]
+ },
+ "kone": {
+  "title": "Naši koně",
+  "items": [
+   {
+    "name": "𝐅𝐈𝐕𝐄 𝐒𝐓𝐀𝐑 𝐃𝐄𝐗𝐓𝐄𝐑 ",
+    "info": "Belgian Warmblood",
+    "photo": "img/foto-mvv711gy.jpg",
+    "alt": "𝐅𝐈𝐕𝐄 𝐒𝐓𝐀𝐑 𝐃𝐄𝐗𝐓𝐄𝐑 "
+   },
+   {
+    "name": "𝐓𝐈𝐓𝐀́𝐍",
+    "info": "Arabian",
+    "photo": "img/foto-mvv713by.jpg",
+    "alt": "𝐓𝐈𝐓𝐀́𝐍"
+   },
+   {
+    "name": "𝐄𝐋 𝐖𝐄𝐒𝐓 𝐒𝐏𝐈𝐃𝐄𝐑𝐌𝐀𝐍 ",
+    "info": "American Paint Horse",
+    "photo": "img/foto-mvv71593.jpg",
+    "alt": "𝐄𝐋 𝐖𝐄𝐒𝐓 𝐒𝐏𝐈𝐃𝐄𝐑𝐌𝐀𝐍 "
+   },
+   {
+    "name": "𝐍𝐄𝐒𝐒𝐈𝐄",
+    "info": "Hucul x IC",
+    "photo": "img/foto-mvv71774.jpg",
+    "alt": "𝐍𝐄𝐒𝐒𝐈𝐄"
+   },
+   {
+    "name": "𝐖𝐢𝐥𝐝 𝐖𝐢𝐥𝐥𝐢𝐚𝐦 𝐒𝐞𝐜𝐫𝐞𝐭 ",
+    "info": "Mustang ",
+    "photo": "img/foto-mvv71ax5.jpg",
+    "alt": "𝐖𝐢𝐥𝐝 𝐖𝐢𝐥𝐥𝐢𝐚𝐦 𝐒𝐞𝐜𝐫𝐞𝐭 "
+   },
+   {
+    "name": "𝐐𝐔𝐈𝐂𝐊 𝐒𝐍𝐎𝐖𝐒𝐓𝐎𝐑𝐌 ",
+    "info": "English Thoroughbred",
+    "photo": "img/foto-mvv71e4b.jpg",
+    "alt": "𝐐𝐔𝐈𝐂𝐊 𝐒𝐍𝐎𝐖𝐒𝐓𝐎𝐑𝐌 "
+   },
+   {
+    "name": "𝐊𝐀𝐑𝐌𝐀 𝐈𝐒 𝐑𝐄𝐀𝐋 ",
+    "info": "Welsh pony ",
+    "photo": "img/foto-mvv71hbz.jpg",
+    "alt": "𝐊𝐀𝐑𝐌𝐀 𝐈𝐒 𝐑𝐄𝐀𝐋 "
+   },
+   {
+    "name": "𝐑𝐎𝐒𝐄 𝐋𝐎𝐔 ",
+    "info": "Dutch Warmblood ",
+    "photo": "img/foto-mvv71j6g.jpg",
+    "alt": "𝐑𝐎𝐒𝐄 𝐋𝐎𝐔 "
+   },
+   {
+    "name": "𝐂𝐇𝐈𝐒𝐇𝐈𝐘𝐀 ",
+    "info": "Appa x Mustag",
+    "photo": "img/foto-mvv740zc.jpg",
+    "alt": "𝐂𝐇𝐈𝐒𝐇𝐈𝐘𝐀 "
+   },
+   {
+    "name": "𝐀𝐔𝐑𝐄𝐋𝐈𝐎𝐍 𝐃𝐄 𝐆𝐄𝐑𝐒 ",
+    "info": "Selle Français",
+    "photo": "img/foto-mvv757lv.jpg",
+    "alt": "𝐀𝐔𝐑𝐄𝐋𝐈𝐎𝐍 𝐃𝐄 𝐆𝐄𝐑𝐒 "
+   }
+  ]
+ },
+ "onas": {
+  "title": "O nás",
+  "lead": "Jsme Jorvik Private Stables, moderní stáj, kde se spojení tradice s inovacemi projevuje v každém detailu. Naše stáje se pyšní komplexními areály navrženými tak, aby splnily potřeby jak koní, tak jezdců.",
+  "paragraphs": [
+   "Srdcem areálu je prostorná a pohodlná stáj s moderními boxy, které zajišťují optimální podmínky pro odpočinek a regeneraci koní. Každý box je vybaven kvalitní podestýlkou a dostatečným prostorem, aby se koně cítili pohodlně a bezpečně.",
+   "Náš venkovní areál zahrnuje prostorné pastviny, které umožňují koním volný pohyb a přirozenou interakci. Pro trénink máme k dispozici různorodé jízdárny, včetně kryté haly a venkovních arén, kde mohou jezdec a kůň pilovat své dovednosti v různých disciplínách.",
+   "Dále nabízíme moderní zázemí pro jezdce, včetně učeben pro teoretické výcviky, relaxačního prostoru a šaten s potřebným vybavením. Naše stáje také spolupracují s odborníky na výživu a veterinární péči, což zajišťuje, že koně dostávají nejlepší možnou péči.",
+   "Zaměřujeme se také na převýchovu koní, jejich obsedání a postupnou přípravu do sportu. Pracujeme systematicky a s respektem k individuálním potřebám každého koně, přičemž klademe důraz na klidný přístup, správné přiježdění a vytvoření pevných základů pro další rozvoj.",
+   "Součástí naší činnosti je aktivní účast v závodním prostředí. Jako závodní stáj se věnujeme přípravě koní i jezdců s cílem dosahovat co nejlepších výkonů v jednotlivých disciplínách. Důraz klademe na dlouhodobý rozvoj, pečlivý trénink a zodpovědný přístup ke sportu, který respektuje pohodu a zdraví koní.",
+   "V rámci našeho programu pořádáme různé soutěže a vzdělávací akce, které podporují komunitu a umožňují sdílení znalostí a zkušeností. Naše stáje jsou místem, kde se koně a jezdci setkávají v duchu spolupráce a vzájemného respektu, a kde se každý den otevírá nová kapitola v jejich společném příběhu."
+  ]
+ },
+ "cenik": {
+  "title": "Ceník",
+  "ustajeniTitle": "Ustájení",
+  "ustajeni": [
+   {
+    "label": "Steve Farm · 24/7 výběh",
+    "price": "7 000 JS"
+   },
+   {
+    "label": "Steve Farm · 12/12 box/výběh",
+    "price": "14 000 JS"
+   },
+   {
+    "label": "Steve Farm + Marley Farm · 12/12 box/výběh",
+    "price": "14 000 JS"
+   },
+   {
+    "label": "Marley Farm · 24/7 výběh",
+    "price": "6 000 JS"
+   },
+   {
+    "label": "Baroness Racetrack · 12/12 box/výběh",
+    "price": "18 000 JS"
+   },
+   {
+    "label": "Silverglade Manor · 24/7 výběh",
+    "price": "6 000 JS"
+   },
+   {
+    "label": "Silverglade Manor · 12/12 venkovní box/výběh",
+    "price": "15 000 JS"
+   },
+   {
+    "label": "Silverglade Manor · 12/12 vnitřní box/výběh",
+    "price": "12 000 JS"
+   },
+   {
+    "label": "Silverglade Manor · 24/7 pastvina",
+    "price": "5 000 JS"
+   },
+   {
+    "label": "Silverglade Manor · 12/12 vnitřní box/pastvina",
+    "price": "8 000 JS"
+   },
+   {
+    "label": "Silverglade Manor · 12/12 venkovní box/pastvina",
+    "price": "11 000 JS"
+   }
+  ],
+  "mods": [
+   {
+    "badge": "+1 000 JS",
+    "text": "v ceně 2 tréninky za měsíc"
+   },
+   {
+    "badge": "−1 000 JS",
+    "text": "bez využití žádné jízdárny ani kruhovky"
+   }
+  ],
+  "includedTitle": "V ceně ustájení",
+  "included": [
+   "2× denně příkrm",
+   "Dekování, nandavání masky atd.",
+   "Dohled nad koněm a hlídání jeho zdravotního stavu",
+   "Jízdárna a kruhovka",
+   "Hala (pouze Silverglade Manor a Marley, ostatní za příplatek 800 JS měsíčně či 250 JS na hodinu)",
+   "1× trénink",
+   "Asistence u kováře a veterináře (fyzio, sedlář atd.)",
+   "Vlastní skříňka",
+   "Voda, seno",
+   "Jízdárenský materiál (skoky, drezurní obdélník, barely atd.)",
+   "Individuální přístup ke každému koni"
+  ],
+  "pronajemTitle": "Pronájem",
+  "pronajem": [
+   {
+    "title": "Rekreační kůň",
+    "sub": "nevhodný do sportu",
+    "price": "6 000–9 000 JS"
+   },
+   {
+    "title": "Pony",
+    "sub": "pouze pro děti",
+    "price": "5 000–8 000 JS"
+   },
+   {
+    "title": "Sportovní kůň",
+    "sub": "vhodný na závody a budování jezdeckých zkušeností",
+    "price": "10 000–20 000 JS"
+   }
+  ],
+  "pronajemNote": "Cena každého koně se odvíjí od jeho povahy, zkušeností atd.",
+  "pronajemExtra": [
+   {
+    "label": "2× trénink měsíčně – rekreační koně a pony",
+    "price": "+1 000 JS"
+   },
+   {
+    "label": "2× trénink měsíčně – sportovní koně",
+    "price": "+2 000 JS"
+   },
+   {
+    "label": "Výjezd na závody – jednorázově",
+    "price": "1 000 JS"
+   },
+   {
+    "label": "Výjezd na závody – pravidelně",
+    "price": "3 000 JS / měsíc"
+   }
+  ],
+  "klubTitle": "Jezdecký klub",
+  "klub": [
+   {
+    "label": "Rekreační koně · 1× trénink",
+    "price": "1 000 JS"
+   },
+   {
+    "label": "Rekreační koně · 10× trénink",
+    "price": "8 000 JS"
+   },
+   {
+    "label": "Sportovní koně · 1× trénink",
+    "price": "1 500 JS"
+   },
+   {
+    "label": "Sportovní koně · 10× trénink",
+    "price": "12 000 JS"
+   },
+   {
+    "label": "Výjezd na závody – jednorázově",
+    "price": "1 000 JS"
+   },
+   {
+    "label": "Výjezd na závody – pravidelně",
+    "price": "3 000 JS / měsíc"
+   }
+  ]
+ },
+ "footer": {
+  "places": "Steve Farm · Baroness Racetrack · Silverglade Manor · Marley Farm",
+  "note": "Fanouškovský RP projekt ve hře Star Stable, není spojen s jejími vývojáři."
+ },
+ "labels": {
+  "nav": {
+   "ustajeni": "Ustájení",
+   "sluzby": "Služby",
+   "klub": "Jezdecký klub",
+   "kone": "Naši koně",
+   "onas": "O nás",
+   "cenik": "Ceník"
+  },
+  "hero1": "Ustájení",
+  "hero2": "Ceník",
+  "signupPrefix": "Přihlášky do klubu:",
+  "linksNote": "Ceny naleznete v ceníku, naše koně v sekci Naši koně."
+ },
+ "theme": {
+  "bg": "#0B1A33",
+  "gold": "#C9A55C"
+ }
+}
